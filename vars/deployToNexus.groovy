@@ -1,6 +1,4 @@
 #!/usr/bin/env groovy
-@Library("150-shared-library") _ 
-import ch.bs.hug.Constants
 
 def call() {
     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
