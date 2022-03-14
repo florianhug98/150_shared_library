@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call() {
+def call(Map config [:]) {
     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
     pom = readMavenPom file: "pom.xml";
 
@@ -20,13 +20,13 @@ def call() {
       echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
 
       nexusArtifactUploader(
-        nexusVersion: Constants.NEXUS_VERSION,
-        protocol: Constants.NEXUS_PROTOCOL,
-        nexusUrl: Constants.NEXUS_URL,
+        nexusVersion: config.nexusVersion,
+        protocol: config.nexusProtocol,
+        nexusUrl: config.nexusUrl,
         groupId: pom.groupId,
         version: pom.version,
-        repository: Constants.NEXUS_REPOSITORY,
-        credentialsId: Constants.NEXUS_CREDENTIALS_ID,
+        repository: config.nexusRepository,
+        credentialsId: config.nexusCredentialsId,
         artifacts: [
           // Artifact generated such as .jar, .ear and .war files.
           [artifactId: pom.artifactId,
