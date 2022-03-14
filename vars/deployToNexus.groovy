@@ -1,4 +1,6 @@
 #!/usr/bin/env groovy
+@Library("150-shared-library") _ 
+import ch.bs.hug.Constants
 
 def call() {
     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
@@ -20,13 +22,13 @@ def call() {
       echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
 
       nexusArtifactUploader(
-        nexusVersion: "nexus3",
-        protocol: "https",
-        nexusUrl: "nexus.florian-hug.ch",
+        nexusVersion: Constants.NEXUS_VERSION,
+        protocol: Constants.NEXUS_PROTOCOL,
+        nexusUrl: Constants.NEXUS_URL",
         groupId: pom.groupId,
         version: pom.version,
-        repository: "ch.bs.hug",
-        credentialsId: "nexus-credentials",
+        repository: Constants.NEXUS_REPOSITORY,
+        credentialsId: Constants.NEXUS_CREDENTIALS_ID,
         artifacts: [
           // Artifact generated such as .jar, .ear and .war files.
           [artifactId: pom.artifactId,
