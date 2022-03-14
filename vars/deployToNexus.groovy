@@ -24,7 +24,7 @@ def call() {
       nexusArtifactUploader(
         nexusVersion: Constants.NEXUS_VERSION,
         protocol: Constants.NEXUS_PROTOCOL,
-        nexusUrl: Constants.NEXUS_URL",
+        nexusUrl: Constants.NEXUS_URL,
         groupId: pom.groupId,
         version: pom.version,
         repository: Constants.NEXUS_REPOSITORY,
