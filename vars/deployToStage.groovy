@@ -1,12 +1,10 @@
 #!/usr/bin/env groovy
 
-def call() {
+def call(Map config = [:]) {
   withCredentials([sshUserPrivateKey(credentialsId: 'app-ssh', keyFileVariable: 'keyfile', usernameVariable: 'sshuser')]) {
     withCredentials([usernamePassword(credentialsId: 'nexus-credentials', passwordVariable: 'password', usernameVariable: 'username')]) {
       sh "ssh -i $keyfile -o StrictHostKeyChecking=no $sshuser " +
-        "docker login -u $username -p $password ${env.APP_URL}" + 
-        "; docker ps" +
-        "; docker logout ${env.APP_URL}"
+        "docker pull nexus.florian-hug.ch/repository/docker-repo/spring-jenkins-demo-arm:0.2"
     }
   }
 }
