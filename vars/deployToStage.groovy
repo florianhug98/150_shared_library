@@ -16,7 +16,8 @@ def call(Map config = [:]) {
       "${dockerStopCommand};" +
       "${dockerRemoveContainerCommand};" +
       "${dockerRemoveImageCommand};" +
-      "${dockerPullCommand}" +
+      "${dockerPullCommand};" +
+      "${dockerRunCommand}" +
       "'"
   }
 }
