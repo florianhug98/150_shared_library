@@ -2,7 +2,7 @@
 
 def call(Map config = [:]) {
   def pom = readMavenPom file: "pom.xml"
-  def fullImageName = config.imageName + "${pom.version}"
+  def fullImageName = config.imageName + ":${pom.version}"
   
   def dockerStopCommand = "docker stop " + config.imageName
   def dockerRemoveImageCommand = "docker rmi \$(docker images -q ${env.DOCKER_BASE_URL}/" + config.imageName + ")"
