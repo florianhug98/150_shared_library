@@ -13,6 +13,7 @@ def call(Map config = [:]) {
     sh "ssh -i $keyfile -o StrictHostKeyChecking=no $sshuser " +
       "'" +
       "${dockerStopCommand};" +
+      "${dockerRemoveContainerCommand};" +
       "${dockerRemoveImageCommand};" +
       "${dockerPullCommand}" +
       "'"
