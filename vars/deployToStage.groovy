@@ -6,7 +6,7 @@ def call() {
       sh "ssh -i $keyfile -o StrictHostKeyChecking=no $sshuser " +
         "docker login -u $username -p $password ${env.APP_URL}" + 
         "; docker ps" +
-        "; docker logout ${env.APP_URL}
+        "; docker logout ${env.APP_URL}"
     }
   }
 }
