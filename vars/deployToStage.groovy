@@ -5,7 +5,7 @@ def call(Map config = [:]) {
   def fullImageName = config.imageName + "${pom.version}"
   
   def dockerStopCommand = "docker stop " + config.imageName
-  def dockerRemoveImageCommand = "docker rmi \$(docker images -q ${env.DOCKER_BASE_URL}/${fullImageName})"
+  def dockerRemoveImageCommand = "docker rmi \$(docker images -q ${env.DOCKER_BASE_URL}/" config.imageName + ")"
   def dockerPullCommand = "docker pull ${env.DOCKER_BASE_URL}/${fullImageName}"
   
   withCredentials([sshUserPrivateKey(credentialsId: 'app-ssh', keyFileVariable: 'keyfile', usernameVariable: 'sshuser')]) {
