@@ -6,6 +6,7 @@ def call(Map config = [:]) {
   
   def dockerStopCommand = "docker stop " + config.imageName
   def dockerRemoveImageCommand = "docker rmi \$(docker images -q ${env.DOCKER_BASE_URL}/" + config.imageName + ")"
+  def dockerRemoveContainerCommand = "docker rm " + config.imageName
   def dockerPullCommand = "docker pull ${env.DOCKER_BASE_URL}/${fullImageName}"
   
   withCredentials([sshUserPrivateKey(credentialsId: 'app-ssh', keyFileVariable: 'keyfile', usernameVariable: 'sshuser')]) {
